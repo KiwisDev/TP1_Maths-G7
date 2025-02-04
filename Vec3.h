@@ -8,7 +8,7 @@ class Vec3 {
 public:
     double x, y, z;
 
-    Vec3(const double x, const double y, const double z) : x(x), y(y), z(z) {}
+    Vec3(const double x = 0, const double y = 0, const double z = 0) : x(x), y(y), z(z) {}
 
     Vec3 operator+(const Vec3& rhs) const {
         return {x + rhs.x, y + rhs.y, z + rhs.z};
