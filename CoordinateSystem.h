@@ -7,6 +7,9 @@ constexpr double DEG_TO_RAD = M_PI / 180.0f;
 
 class CoordinateSystem {
 private:
+    /*
+     * Construit un system de coordonne avec des rotations depuis le repere universel
+     */
     void constructFromRotation(double xDeg, double yDeg, double zDeg);
 
 public:
@@ -28,10 +31,17 @@ public:
         constructFromRotation(xDeg, yDeg, zDeg);
     }
 
+    /*
+     * Retourne un vecteur dans le repere universel depuis un repere de coordonnee
+     */
     Vec3 getUniversalPosition(const Vec3& pos) const {
         return origin + (xAxis * pos.x) + (yAxis * pos.y) + (zAxis * pos.z);
     }
 
+    /*
+     * Verifie si les vecteurs sont lineairements independants
+     *      - La condition est a >= 1e-9 pour compenser les imprecisions liee au type double
+     */
     bool isLinearlyIndependent() const {
         const double determinant =
         xAxis.x * (yAxis.y * zAxis.z - yAxis.z * zAxis.y)
@@ -41,6 +51,9 @@ public:
         return std::abs(determinant) >= 1e-9;
     }
 
+    /*
+     * Affiche le systeme de coordonnee
+     */
     void print() const {
         origin.print();
         xAxis.print();

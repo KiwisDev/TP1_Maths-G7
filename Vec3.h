@@ -22,14 +22,16 @@ public:
         return {x * rhs, y * rhs, z * rhs};
     }
 
-    Vec3 operator/(const double rhs) const {
-        return {x / rhs, y / rhs, z / rhs};
-    }
-
+    /*
+     * Retourne la longueur du vecteur
+     */
     double length() const {
         return sqrt(x * x + y * y + z * z);
     }
 
+    /*
+     * Retourne le vecteur unitaire du vecteur
+     */
     Vec3 normalize() const {
         const double magnitude = length();
         if (magnitude > 0.0) {
@@ -38,14 +40,23 @@ public:
         return {0, 0, 0};
     }
 
+    /*
+     * Retourne la distance entre ce vecteur et un autre
+     */
     double distance(const Vec3& other) const {
         return sqrt((x - other.x) * (x - other.x) + (y - other.y) * (y - other.y) + (z - other.z) * (z - other.z));
     }
 
+    /*
+     * Retourne le produit sclaire
+     */
     double dot(const Vec3& other) const {
         return x * other.x + y * other.y + z * other.z;
     }
 
+    /*
+     * Retourne le vecteur transformer avec une matrice de rotation
+     */
     Vec3 transform(double matrix[3][3]) const {
         return {
             x * matrix[0][0] + y * matrix[0][1] + z * matrix[0][2],
@@ -54,6 +65,9 @@ public:
         };
     }
 
+    /*
+     * Affiche le vecteur
+     */
     void print() const {
         std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
     }
